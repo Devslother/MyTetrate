@@ -1,0 +1,24 @@
+---
+const { platform, username } = Astro.props;
+
+const normalizedPlatform = platform.toLowerCase() as keyof typeof urls; 
+
+const urls = {
+  twitter: `https://twitter.com/${username}`,
+  github: `https://github.com/${username}`,
+  instagram: `https://www.instagram.com/${username}`,
+  linkedin: `https://www.linkedin.com/in/${username}`
+};
+
+const url = urls[normalizedPlatform] || "#"; // Если платформа не найдена, ставим #
+---
+<a href={url} target="_blank" rel="noopener noreferrer">{platform}</a>
+
+<style>
+  a {
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: #4c1d95;
+    text-decoration: none;
+  }
+</style>
